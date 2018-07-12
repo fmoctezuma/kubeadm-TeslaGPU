@@ -19,4 +19,9 @@ kubectl apply -f manifests/kube-flannel-ppc64le-noresourcelimit.yml
 ```
 *Note:* At this point couldn't find calico support for ppc64le, so I'm sticking with flannel for now.
 
-Modify CoreDNS to be schedule on a master node, or just apply the example on manifest directory
+During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a master node, or just apply the example on manifest directory
+
+```
+kubectl apply -f manifests/
+```
+
