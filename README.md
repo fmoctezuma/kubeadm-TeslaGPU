@@ -20,6 +20,13 @@ sudo docker info | grep nvidia
 Runtimes: runc nvidia
 ```
 
+Run nvidia/cuda-ppc64le
+```
+docker run -it --rm --runtime nvidia nvidia/cuda-ppc64le nvidia-smi
+```
+
+
+
 Pretty basic single node not HA kubeadm deploy using openpower ppc64le / Tesla GPU
 
 ------
@@ -45,4 +52,6 @@ During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a mast
 ```
 kubectl apply -f manifests/coredns_single_master.yaml
 ```
+
+
 
