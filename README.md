@@ -22,6 +22,6 @@ kubectl apply -f manifests/kube-flannel-ppc64le-noresourcelimit.yml
 During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a master node, or just apply the example on manifest directory
 
 ```
-kubectl apply -f manifests/
+kubectl apply -f manifests/coredns_single_master.yaml
 ```
 
