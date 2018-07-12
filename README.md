@@ -1,4 +1,5 @@
 # kubeadm-TeslaGPU
+Pretty basic single node not HA kubeadm deploy using openpower ppc64le / Tesla GPU
 
 Install cuda
 ```
@@ -23,11 +24,36 @@ Runtimes: runc nvidia
 Run nvidia/cuda-ppc64le
 ```
 docker run -it --rm --runtime nvidia nvidia/cuda-ppc64le nvidia-smi
+
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000002:01:00.0 Off |                    0 |
+| N/A   36C    P0    32W / 300W |      0MiB / 16280MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla P100-SXM2...  Off  | 00000003:01:00.0 Off |                    0 |
+| N/A   36C    P0    32W / 300W |      0MiB / 16280MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   2  Tesla P100-SXM2...  Off  | 0000000A:01:00.0 Off |                    0 |
+| N/A   36C    P0    33W / 300W |      0MiB / 16280MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   3  Tesla P100-SXM2...  Off  | 0000000B:01:00.0 Off |                    0 |
+| N/A   37C    P0    30W / 300W |      0MiB / 16280MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
 ```
 
-
-
-Pretty basic single node not HA kubeadm deploy using openpower ppc64le / Tesla GPU
+### Kubernetes deployment
 
 ------
 
