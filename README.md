@@ -79,6 +79,11 @@ During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a mast
 kubectl apply -f manifests/coredns_single_master.yaml
 ```
 
+Install NVIDIA device plugin for Kubernetes (This case v1.11)
+```
+kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v1.11/nvidia-device-plugin.yml
+```
+
 Test cuda vector-add on ppc64el, I had to build my own Docker image based on ppc64le for cuda-vector-add, see manifests to change for a custom image if desired.
 Docker file can be found here:
 https://github.com/fmoctezuma/kubeadm-TeslaGPU/blob/master/cuda-vector-add/Dockerfile
