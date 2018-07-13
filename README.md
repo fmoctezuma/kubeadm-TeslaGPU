@@ -79,5 +79,17 @@ During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a mast
 kubectl apply -f manifests/coredns_single_master.yaml
 ```
 
+Test cuda vector-add on ppc64el
+```
+kubectl apply -f manifests/cuda-vector.yaml
+kubectl logs cuda-vector-add
+[Vector addition of 50000 elements]
+Copy input data from the host memory to the CUDA device
+CUDA kernel launch with 196 blocks of 256 threads
+Copy output data from the CUDA device to the host memory
+Test PASSED
+Done
+```
+
 
 
