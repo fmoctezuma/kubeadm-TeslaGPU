@@ -99,5 +99,37 @@ Test PASSED
 Done
 ```
 
+This means GPUs are consumed by kubernetes, the next step will be deploy kubeflow using ksonnet.io
+At this point there is no ksonnet binary for ppc64el, so let's compile one.
+Golang should be installed on the system, I'm going to skip that part.
+
+Let's get ksonnnet and compile it to ppc64el
+```
+go get github.com/ksonnet/ksonnet
+cd $GOPATH/src/github.com/ksonnet/ksonnet
+```
+Add the following line to the Makefile, creating another install supporting ppc64el, see example below
+```
+install-ppc64le:
+        CGO_ENABLED=0 GOOS=linux GOARCH=ppc64le $(GO) build -o $(GOPATH)/bin/ks $(GO_FLAGS) ./cmd/ks
+```
+
+Generate the binary
+```
+$GOPATH/src/github.com/ksonnet/ksonnet[master] → make install-ppc64le
+```
+
+Binary should be installed, if not double check $GOPATH/bin/ks exists
+```
+ks -help
+```
+
+
+
+
+
+
+
+
 
 
