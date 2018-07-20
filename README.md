@@ -124,6 +124,17 @@ Binary should be installed, if not double check $GOPATH/bin/ks exists
 ks -help
 ```
 
+#### Deploy tensorflow operator
+
+Install/compile golang/dep for ppc64
+```
+go get go get github.com/golang/dep/
+cd $GOPATH/github.com/golang/dep/
+```
+Assuming we are on the ppc64le server, Make script takes `ARCH := $(shell go env GOARCH)` to build the package
+```
+make build
+```
 
 
 
