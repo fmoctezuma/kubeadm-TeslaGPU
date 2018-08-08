@@ -78,6 +78,53 @@ During kubeadm init CoreDNS was enabled, Modify CoreDNS to be schedule on a mast
 ```
 kubectl apply -f manifests/coredns_single_master.yaml
 ```
+### Preparing your GPU Nodes
+
+The following steps need to be executed on all your GPU nodes.
+Additionally, this README assumes that the NVIDIA drivers and nvidia-docker has been installed.
+
+First you will need to check and/or enable the nvidia runtime as your default runtime on your node.
+We will be editing the docker daemon config file which is usually present at `/etc/docker/daemon.json`:
+```json
+{
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+```
+> *if `runtimes` is not already present, head to the install page of [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)*
+
+The second step is to enable the `DevicePlugins` feature gate on all your GPU nodes.
+
+If your Kubernetes cluster is deployed using kubeadm and your nodes are running systemd you will have to open the kubeadm
+systemd unit file at `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` and add the following environment argument:
+```
+Environment="KUBELET_EXTRA_ARGS=--feature-gates=DevicePlugins=true"
+```
+
+> *If you spot the Accelerators feature gate you should remove it as it might interfere with the DevicePlugins feature gate*
+
+Reload and restart the kubelet to pick up the config change:
+```shell
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart kubelet
+```
+
+> In this guide we used kubeadm and kubectl as the method for setting up and administering the Kubernetes cluster,
+> but there are many ways to deploy a Kubernetes cluster.
+> To enable the `DevicePlugins` feature gate if you are not using the kubeadm + systemd configuration, you will need
+> to make sure that the arguments that are passed to Kubelet include the following `--feature-gates=DevicePlugins=true`.
+
+### Enabling GPU Support in Kubernetes
+
+Once you have enabled this option on *all* the GPU nodes you wish to use,
+you can then enable GPU support in your cluster by deploying the following Daemonset:
+
+
 
 Install NVIDIA device plugin for Kubernetes (This case v1.11)
 ```
