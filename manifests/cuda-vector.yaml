@@ -7,7 +7,7 @@ spec:
   containers:
     - name: cuda-vector-add
       # https://github.com/fmoctezuma/kubeadm-TeslaGPU/blob/master/cuda-vector-add/Dockerfile
-      # original image: "k8s.gcr.io/cuda-vector-add:v0.1"i
+      # original image: "k8s.gcr.io/cuda-vector-add:v0.1"
       image: "yazpik/cuda-vectoradd"
       resources:
         limits:
