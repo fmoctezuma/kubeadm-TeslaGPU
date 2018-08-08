@@ -81,7 +81,7 @@ kubectl apply -f manifests/coredns_single_master.yaml
 
 Install NVIDIA device plugin for Kubernetes (This case v1.11)
 ```
-kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v1.11/nvidia-device-plugin.yml
+kubectl apply -f https://raw.githubusercontent.com/fmoctezuma/kubeadm-TeslaGPU/master/manifests/k8s-device-plugin-ppc64le.yaml
 ```
 
 Test cuda vector-add on ppc64el, I had to build my own Docker image based on ppc64le for cuda-vector-add, see manifests to change for a custom image if desired.
