@@ -1,0 +1,7 @@
+FROM quay.io/fmoctezuma/jupyterhub:1804
+
+RUN pip3 install --no-cache-dir \
+                 jupyterhub-kubespawner==0.8.1 \
+                 jupyterhub-dummyauthenticator \
+                 jhub_remote_user_authenticator \
+                 oauthenticator
