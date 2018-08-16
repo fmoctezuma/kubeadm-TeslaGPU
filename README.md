@@ -192,6 +192,30 @@ Assuming we are on the ppc64le server, Make script takes `ARCH := $(shell go env
 make build
 ```
 
+#### Install helm on ppc64le
+For Linux on Power 64-bit LE, run the following command:
+```
+docker run -t --entrypoint=/bin/cp -v /usr/local/bin:/data ppc64le/helm:v2.4.1 /helm /data/
+```
+
+Create a Helm home directory. Run the following command:
+```
+mkdir -p /var/lib/helm; export HELM_HOME=/var/lib/helm
+```
+
+Initialize the Helm CLI. Run the following command:
+```
+helm init --client-only
+```
+Verify that the Helm CLI initialized. Run the following command:
+```
+helm version
+```
+The output resembles the following code:
+```
+Client: &version.Version{SemVer:"v2.6.0", GitCommit:"5bc7c619f85d74702e810a8325e0a24f729aa11a", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.6.0", GitCommit:"5bc7c619f85d74702e810a8325e0a24f729aa11a", GitTreeState:"clean"}
+```
 
 
 
